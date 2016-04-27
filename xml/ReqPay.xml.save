@@ -1,0 +1,52 @@
+<upi:ReqPay xmlns:upi="http://npci.org/upi/schema/">
+    <Head ver="1.0" ts="2015-02-16T22:02:35+05:30" msgId="EdAurmyvB16k6pc3w0waT92Ukt1IruJuxfn" orgId="700015"/>
+<Meta>
+<Tag name="PAYREQSTART" value="2015-02-16T22:02:00+05:30"/>
+<Tag name="PAYREQEND" value="2015-02-16T22:02:35+05:30"/>
+</Meta>
+<Txn id="66205491658192749306572786848676333" note="Restaurant Bill "
+refId="2834473939393" refUrl="http://www.npci.org.in/" custRef="987656432321"
+ts="2015-02-16T22:02:35+05:30" type="PAY" orgTxnId="">
+<RiskScores>
+<Score provider="psp1" type="TXNRISK" value="00030"/>
+</RiskScores>
+</Txn>
+<Payer addr="Jose@cpay" name="winster jose" seqNum="1" type="PERSON"
+code="">
+<Info>
+<Identity type="ACCOUNT" verifiedName="Winster Jose"
+id="7389923983430"/>
+<Rating verifiedAddress="TRUE"/>
+</Info>
+<Device>
+<Tag name="MOBILE" value="+91.99999.00000"/>
+<Tag name="GEOCODE" value="288177"/>
+<Tag name="LOCATION" value="Mumbai,Maharashtra" />
+<Tag name="IP" value="124.170.23.22"/>
+<Tag name="TYPE" value="mob"/>
+<Tag name="ID" value="750c6be243f1c4b5c9912b95a5742fc5"/>
+#device advertising id
+<Tag name="OS" value="android"/>
+<Tag name="APP" value="NPCIAPP"/>
+<Tag name="CAPABILITY" value="5200000200010004000639292929292"/>
+</Device>
+<Ac addrType="ACCOUNT">
+<Detail name="ACTYPE" value="SAVINGS"/>
+<Detail name="IFSC" value="AAB0288100Q"/>
+<Detail name="ACNUM" value="2678892001828"/>
+</Ac>
+<Creds>
+<Cred type="PIN" subType="MPIN">
+<Data code="NPCI" ki=""> base-64 encoded and encrypted</Data>
+</Cred>
+</Creds>
+<Amount value="1" curr="INR">
+</Amount>
+</Payer>
+<Payees>
+<Payee addr="venkat@cpay" name="" seqNum="1" type="" code="">
+  <Amount value="1" curr="INR">
+  </Amount>
+</Payee>
+</Payees>
+</upi:ReqPay>

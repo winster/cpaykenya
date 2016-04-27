@@ -1,0 +1,27 @@
+var otp = require("otplib/lib/authenticator"),
+    Q = require("q"),
+    https = require('https'),
+    fs = require('fs')
+    connection = require('./connection.js'),
+    ca = fs.readFileSync('./ssl/server.key'),
+    upi = require('/upi.json');
+
+var NCPI = function(){};
+NCPI.prototype.pay = function(email){
+    var d = Q.defer();
+    var options = {
+        host: upi.host, 
+        port: upi.port, 
+        path: '/', 
+        ca: ca
+    };    
+options.agent = new https.Agent(options);
+
+https.request(options, function(res) {
+  res.pipe(process.stdout);
+}).end();
+                d.reject({error:"User already exists", errorCode:"121"});
+            d.resolve(email);
+    return d.promise;
+};
+module.exports = new NCPI();

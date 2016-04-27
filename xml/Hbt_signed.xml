@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ns2:ReqHbt xmlns:ns2="http://npci.org/upi/schema/">
+    <Head msgId="2q88Nu58sgwaexYJzKrDnGn9JwHvYpePP2h" orgId="700015" ts="2016-02-27T03:05:58+05:30" ver="1.0"/>
+    <Txn id="83040996886954426848139439123647159" note="Heartbeat" ts="2016-02-27T03:05:58+05:30" type="Hbt"/>
+    <HbtMsg type="ALIVE" value="NA"/>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>xw1F7GHxnGvhI0LQtIoOKDtWFpeVpktmoX2IZvA8ZT8=</DigestValue></Reference></SignedInfo><SignatureValue>ifg2XdvxbllsjIm26sSCsgzOwBV3sf7x8eh4AuiP+98XqHg3/jPouSaHAniSpDz21FCdenf62507
+LNbaru40lRX15FHbeHFIlyfzR9M7AkKeCtkxRZg8bbjuaK2pmOLJ2CuBfWG4NMoqG8Q8mQHBI5dV
+aYPNF3RUxQUJ5OonQcVPJt8H7Pm2beqH5Q/2rZ+WfZjg7B3fdhITN/VgrcxcMHG9thgNDRAwJutJ
+d4ald09nzdk8WO/ECC07R25pZENIfxsU17VO2RQhwnbZ+6jNJEJvW8ReoqJ9hTa/uJiPC9yf0DlE
++WgqUNrgIcliHfa9KJW2mMa4H7WexqCVfAJJ/g==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>8Uiva1eNeHPmqYaLEPT7MFInvt7GYgc1QM6AgFHy3cTaHwDntrJpAZ2/7wDxuHZzle5nWwHdr6Ad
+PmJQWt3+DXoxdFphXL3ydoBgLyuPnSJSHwB/kZoDab2EPGcqyCmxLoON2WaWy1A7ONoxqlOj6ztI
+6DNLyhqq3PpiK+6AkwqdYPw9loyCDfzvcZouxsJ9RgOkfKuVqsMgVRRaxXBG7xBY+f529jqSDT7Y
+W+6+AKreDWFD9hDUu8Yx0KlehwmjChz7pkOt5IUXm+B1MfHzYItMKnwx9MNL0bF/p1IGxNwGERpb
+d+IlKt3cduI/7021fPPgkdxoj2uVoAAN4O/OpQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></ns2:ReqHbt>

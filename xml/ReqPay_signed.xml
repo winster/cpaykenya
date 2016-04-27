@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><upi:ReqPay xmlns:upi="http://npci.org/upi/schema/">
+    <Head msgId="xUA2Ybn1VX0ja2BGhnJjXILs1PVK0GpE2j6" orgId="700015" ts="2015-02-16T22:02:35+05:30" ver="1.0"/>
+<Meta>
+<Tag name="PAYREQSTART" value="2015-02-16T22:02:00+05:30"/>
+<Tag name="PAYREQEND" value="2015-02-16T22:02:35+05:30"/>
+</Meta>
+<Txn custRef="987656432321" id="09859113434163585231966367780109780" note="Restaurant Bill " orgTxnId="" refId="2834473122334" refUrl="http://www.npci.org.in/" ts="2015-02-16T22:02:35+05:30" type="PAY">
+<RiskScores>
+<Score provider="psp1" type="TXNRISK" value="00030"/>
+</RiskScores>
+</Txn>
+<Payer addr="Jose@cpay" code="" name="winster jose" seqNum="1" type="PERSON">
+<Info>
+<Identity id="7389923983430" type="ACCOUNT" verifiedName="Winster Jose"/>
+<Rating verifiedAddress="TRUE"/>
+</Info>
+<Device>
+<Tag name="MOBILE" value="+91.99999.00000"/>
+<Tag name="GEOCODE" value="288177"/>
+<Tag name="LOCATION" value="Mumbai,Maharashtra"/>
+<Tag name="IP" value="124.170.23.22"/>
+<Tag name="TYPE" value="mob"/>
+<Tag name="ID" value="750c6be243f1c4b5c9912b95a5742fc5"/>
+<Tag name="OS" value="android"/>
+<Tag name="APP" value="NPCIAPP"/>
+<Tag name="CAPABILITY" value="5200000200010004000639292929292"/>
+</Device>
+<Ac addrType="ACCOUNT">
+<Detail name="ACTYPE" value="SAVINGS"/>
+<Detail name="IFSC" value="AABQ0288100"/>
+<Detail name="ACNUM" value="2678892001828"/>
+</Ac>
+<Creds>
+<Cred subType="MPIN" type="PIN">
+<Data code="NPCI" ki=""> base-64 encoded and encrypted</Data>
+</Cred>
+</Creds>
+<Amount curr="INR" value="1">
+</Amount>
+</Payer>
+<Payees>
+<Payee addr="venkat@cpay" code="" name="venkataswamy" seqNum="1" type="PERSON">
+  <Amount curr="INR" value="1">
+  </Amount>
+</Payee>
+</Payees>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>rm76avd0Doli3WnBwyY6I+z0CuNh+22ztNs2zAk4Qtw=</DigestValue></Reference></SignedInfo><SignatureValue>QAeFXuPqZ7j0R6h9hyPKPiJCWqgPM0ThIhIo6anXicW7Jcw/UBYJ9aJK5Ie7OB8tTNGzdTfxaJsc
+ateuftOBX+y8Hu3Dp4dryUX6weoCIS2IomjJApXFNuByBtdGQOg9DVUbdLI5mLhlzWGkYX9hPUvh
++E4vFALD5umyIEdxyJX6bceexOdJHVCeAOBKsBY7aQ7Pb02ZETBJT9KKRFAvPRF0Tu+osQ/5xaWF
+tWgRPjMp+e5LSVUo+7wOkiVRKJ3NFlWln7/MggnlNFoCI00I3jt7sBPW5ZMIeBhSSWKvj/5oTdD2
+3MFW0bdRGizdoBfYdm9B8mHYmno/xwRAq7eY5g==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>8Uiva1eNeHPmqYaLEPT7MFInvt7GYgc1QM6AgFHy3cTaHwDntrJpAZ2/7wDxuHZzle5nWwHdr6Ad
+PmJQWt3+DXoxdFphXL3ydoBgLyuPnSJSHwB/kZoDab2EPGcqyCmxLoON2WaWy1A7ONoxqlOj6ztI
+6DNLyhqq3PpiK+6AkwqdYPw9loyCDfzvcZouxsJ9RgOkfKuVqsMgVRRaxXBG7xBY+f529jqSDT7Y
+W+6+AKreDWFD9hDUu8Yx0KlehwmjChz7pkOt5IUXm+B1MfHzYItMKnwx9MNL0bF/p1IGxNwGERpb
+d+IlKt3cduI/7021fPPgkdxoj2uVoAAN4O/OpQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></upi:ReqPay>

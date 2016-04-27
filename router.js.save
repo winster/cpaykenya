@@ -1,0 +1,64 @@
+var Q = require("q"),
+    fs = require('fs'),
+    otp = require('otplib/lib/authenticator'),
+    crypto = require('crypto'),
+    multer  = require('multer'),
+    email = require("./email.js"),
+    user = require("./user.js"),
+    ncpi = require("./ncpi.js"),
+    txn = require("./txn.js");
+
+var EXPIRE_MIN=2;
+var upload = multer({ dest: __dirname+'/uploads' });
+
+module.exports = function(app) {
+    
+    app.get('/*', function(req, res) {debugger;
+        var msg = "You are locked!";
+        sendResponse(res, msg);
+        return;
+    });
+
+    app.post('/upi/*', function(req, res){
+        console.log('from UPI');
+        console.log(req.originalUrl);
+        console.log(req.xml);
+        res.sendStatus(200);
+    });
+
+    app.post('/upi/ReqAuthDetails/*', function(req, res){
+        
+    });
+
+    app.post('/register', function(req, res) {
+        var input = req.body;
+        if(!input.email) {
+            var msg = {error:"Invalid input",errorCode:"101"};
+            sendResponse(res, msg);
+            return;
+        }
+        user.isNew(input.email)
+        .then(user.insert)
+        .then(email.send)
+        .then(function(msg){sendResponse(res, msg)})
+        .catch(function(msg){sendResponse(res, msg)}); 
+    });
+
+    app.post('/pay', function(req, res) {debugger;
+        var input = req.body;
+        if(!input.payee){
+            var msg = {error:"Payee not present",errorCode:"102"};
+            sendResponse(res, msg);
+            return;
+        }
+        ncpi.pay(input)
+        .then(txn.insert)
+        .then(function(msg){sendResponse(res,msg)})
+        .catch(function(msg){sendResponse(res, msg)});
+    });
+
+    var sendResponse = function(res, msg){
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(msg));
+    };
+}

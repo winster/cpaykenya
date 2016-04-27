@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<upi:RespAuthDetails xmlns:upi="http://npci.org/upi/schema/">
+  <Head ver="1.0" ts="2015-02-16T22:02:45+05:30" orgId="700015" msgId="MsZPK3GVnR0LzrN0hBCY1vW32AfjzTHn8kJ"/>
+  <Resp reqMsgId="1GRDBknXpxwl3qHT1yCI" result="SUCCESS" errCode=""/>
+  <Txn id="09859113434163585231966367780109780" note="Restaurant Bill " refId="2834473122334" refUrl="http://www.npci.org.in/" custRef="987656432321" ts="2015-02-16T22:02:35+05:30" type="PAY" orgTxnId="">
+    <RiskScores>
+      <Score provider="CPay" type="TXNRISK" value="00030"/>
+      <Score provider="NPCI" type="TXNRISK" value="00030"/>
+    </RiskScores>
+  </Txn>
+  <Payer addr="Jose@cpay" code="0000" name="winster jose" seqNum="1" type="PERSON">
+    <Info>
+      <Identity id="7389923983430" type="ACCOUNT" verifiedName="Winster Jose"/>
+      <Rating verifiedAddress="TRUE"/>
+    </Info>
+    <Ac addrType="ACCOUNT">
+      <Detail name="ACTYPE" value="SAVINGS"/>
+      <Detail name="IFSC" value="AABQ0288100"/>
+      <Detail name="ACNUM" value="2678892001828"/>
+    </Ac>
+    <Amount curr="INR" value="1"/>
+  </Payer>
+  <Payees>
+    <Payee addr="venkat@cpay" name="venkataswamy" seqNum="1" type="PERSON" code="">
+      <Info>
+        <Identity type="ACCOUNT" verifiedName="Venkat" id=""/>
+        <Rating verifiedAddress="TRUE"/>
+      </Info>
+      <Ac addrType="ACCOUNT">
+        <Detail name="IFSC" value="AABQ0288100"/>
+        <Detail name="ACTYPE" value="SAVINGS"/>
+        <Detail name="ACNUM" value="5678892001828"/>
+      </Ac>
+      <Amount value="1" curr="INR"/>
+    </Payee>
+  </Payees>
+</upi:RespAuthDetails>

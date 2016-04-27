@@ -1,0 +1,92 @@
+var otp = require("otplib/lib/authenticator"),
+    Q = require("q"),
+    https = require('https'),
+    fs = require('fs')
+    connection = require('./connection.js'),
+    ca = fs.readFileSync('./ssl/server.key'),
+    upi = require('./upi.json');
+
+var NCPI = function(){};
+NCPI.prototype.pay = function(email){
+    var d = Q.defer();
+    var body = '<upi:ReqPay xmlns:upi="http://npci.org/upi/schema/">
+    <Head ver="1.0" ts="2015-02-16T22:02:35+05:30" orgId="700015"
+msgId="HENSVVR4QOS7X1UGPY7JGUV444PL9T2C3QM"/>
+<Meta>
+<Tag name="PAYREQSTART" value="2015-02-16T22:02:00+05:30"/>
+<Tag name="PAYREQEND" value="2015-02-16T22:02:35+05:30"/>
+</Meta>
+<Txn id="8ENSVVR4QOS7X1UGPY7JGUV444PL9T2C3QM" note="Restaurant Bill "
+refId="2834473939393" refUrl="http://www.npci.org.in/" custRef="987656432321"
+ts="2015-02-16T22:02:35+05:30" type="PAY" orgTxnId="">
+<RiskScores>
+<Score provider="psp1" type="TXNRISK" value="00030"/>
+</RiskScores>
+</Txn>
+<Payer addr="zeeshan.khan@cpay" name="Zeeshan Khan" seqNum="1" type="PERSON"
+code="4814">
+<Info>
+<Identity type="ACCOUNT" verifiedName="Zeeshan Khan"
+id="7389923983430"/>
+<Rating verifiedAddress="TRUE"/>
+</Info>
+<Device>
+<Tag name="MOBILE" value="+91.99999.00000"/>
+<Tag name="GEOCODE" value="288177"/>
+<Tag name="LOCATION" value="Mumbai,Maharashtra" />
+<Tag name="IP" value="124.170.23.22"/>
+<Tag name="TYPE" value="mob"/>
+<Tag name="ID" value="750c6be243f1c4b5c9912b95a5742fc5"/>
+#device advertising id
+<Tag name="OS" value="android"/>
+<Tag name="APP" value="NPCIAPP"/>
+<Tag name="CAPABILITY" value="5200000200010004000639292929292"/>
+</Device>
+<Ac addrType="ACCOUNT">
+<Detail name="ACTYPE" value="SAVINGS"/>
+<Detail name="IFSC" value="HDFC0288100"/>
+<Detail name="ACNUM" value="2678892001828"/>
+</Ac>
+<Creds>
+<Cred type="PIN" subType="MPIN">
+<Data code="" ki=""> base-64 encoded and encrypted</Data>
+</Cred>
+</Creds>
+<Amount value="4000" curr="INR">
+</Amount>
+</Payer>
+<Payees>
+<Payee addr="rohit.patekar@cpay" name="" seqNum="1" type="" code="">
+</Payee>
+</Payees>
+</upi:ReqPay>';
+var options = {
+  host: upi.host, 
+  port: upi.port, 
+  path: '/', 
+  ca: ca,
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/xml',
+    'Accept': 'application/xml'
+  }
+};
+options.agent = new https.Agent(options);
+
+https.request(options, function(res) {
+   console.log( res.statusCode );
+   var buffer = "";
+   res.on( "data", function( data ) { buffer = buffer + data; } );
+   res.on( "end", function( data ) { console.log( buffer ); } );
+});
+req.on('error', function(e) {
+    console.log('problem with request: ' + e.message);
+});
+
+req.write( body );
+req.end();    
+                d.reject({error:"User already exists", errorCode:"121"});
+            d.resolve(email);
+    return d.promise;
+};
+module.exports = new NCPI();

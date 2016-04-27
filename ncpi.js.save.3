@@ -1,0 +1,100 @@
+var otp = require("otplib/lib/authenticator"),
+    Q = require("q"),
+    https = require('https'),
+    fs = require('fs')
+    connection = require('./connection.js'),
+    ca = fs.readFileSync('./ssl/upi-ssl.cer'),
+    https = require("https"),
+    upi = require("./upi.json");
+
+var NCPI = function(){};
+NCPI.prototype.beat = function(){
+    var d = Q.defer();
+    var cmd = require('child_process').spawn('java', ['xml/SignatureGenUtil']);
+    var body = fs.readFileSync("./xml/Hbt_signed.xml", "utf8");
+    var options = {
+        host: upi.host,
+        port: upi.port,
+        path: '/upi/ReqHbt/1.0/urn:txnid:808080787878',
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false,
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/xml',
+            'Accept': 'application/xml'
+        }
+    };
+    options.agent = new https.Agent(options);
+    var req = https.request(options, function(res) {
+       console.log( res.statusCode );
+       var buffer = "";
+       res.on( "data", function( data ) { buffer = buffer + data; } );
+       res.on( "end", function( data ) { console.log( buffer ); d.resolve(buffer);} );
+    });
+    req.on('error', function(e) {
+      console.log('problem with request: ' + e.message);
+      d.reject({error:"User already exists", errorCode:"121"});
+    });
+    req.write( body );
+    req.end();
+    return d.promise; 
+
+};
+NCPI.prototype.pay = function(input){
+    var d = Q.defer();
+    var xmlReq = fs.readFileSync("./xml/ReqPay.xml", "utf8");
+    var oldMsgId = 'CGyfPk1eASViXB4Slv1WhDzw51VEKb1U4KN';
+    var newMsgId = randomString(35, 'aA#');
+    var oldTxnId = '67473659857356386528155808055770455';
+    var newTxnId = randomString(35, '#');
+    xmlReq = xmlReq.replace(oldMsgId, newMsgId);
+    xmlReq = xmlReq.replace(oldTxnId, newTxnId);
+    fs.writeFileSync("./xml/ReqPay.xml", xmlReq, "utf8");
+    oldMsgId = newMsgId;
+    oldTxnId = newTxnId;
+    var cmd = require('child_process').spawn('java', ['xml/SignatureGenUtil']);
+    var body = fs.readFileSync("./xml/ReqPay_signed.xml", "utf8");
+    var options = {
+        host: upi.host, 
+        port: upi.port, 
+        path: '/upi/ReqPay/1.0/urn:txnid:'+67473659857356386528155808055770455, 
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false,
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/xml',
+            'Accept': '*/*'
+        }
+    };
+    options.agent = new https.Agent(options);
+
+    var req = https.request(options, function(res) {
+       console.log( res.statusCode );
+       var buffer = "";
+       res.on( "data", function( data ) { buffer = buffer + data; } );
+       res.on( "end", function( data ) { console.log('ReqPay Response>>'+ buffer ); d.resolve(buffer);} );
+    });
+    req.on('error', function(e) {
+        console.log('problem with request: ' + e.message);
+        d.reject({error:"User already exists", errorCode:"121"});
+    });
+    req.write( body );
+    req.end();            
+    return d.promise;
+};
+
+function randomString(length, chars) {
+    var mask = '';
+    if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
+    if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (chars.indexOf('#') > -1) mask += '0123456789';
+    if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
+    var result = '';
+    for (var i = length; i > 0; --i) result += mask[Math.floor(Math.random() * mask.length)];
+    return result;
+}
+module.exports = new NCPI();
+
+
