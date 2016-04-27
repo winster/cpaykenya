@@ -3,7 +3,7 @@ var express = require('express'),
     https = require("https"),
     http = require("http"),
     fs = require("fs"),
-    ncpi = require("./ncpi.js"),
+    /*ncpi = require("./ncpi.js"),*/
     xmlparser = require('express-xml-bodyparser'),
     WebSocketServer = require("ws").Server,
     url = require('url'),
@@ -14,14 +14,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.text({type:'application/xml'}));
 var router = require("./router.js")(app);
 
-var secureServer = https.createServer({
+/*var secureServer = https.createServer({
     key: fs.readFileSync('./ssl/cpay-ssl.key'),
     cert: fs.readFileSync('./ssl/cpay-ssl.crt'),
     requestCert: true,
     rejectUnauthorized: false
 }, app).listen('443', function() {
     console.log("Secure CPay server listening on port 443");
-});
+});*/
 
 var server = http.createServer();
 var wss = new WebSocketServer({server: server})
@@ -56,8 +56,8 @@ wss.on("connection", function(ws) {
   });
 });
 
-ncpi.beat();
-setInterval(ncpi.beat, 180000);
+/*ncpi.beat();
+setInterval(ncpi.beat, 180000);*/
 exports = module.exports = app;
 
 function getParameterByName(name, url) {
