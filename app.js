@@ -10,6 +10,7 @@ var express = require('express'),
     app = express(),
     global = require('./global.js');
 
+var port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.text({type:'application/xml'}));
 var router = require("./router.js")(app);
@@ -26,7 +27,7 @@ var router = require("./router.js")(app);
 var server = http.createServer();
 var wss = new WebSocketServer({server: server})
 server.on('request', app);
-server.listen(80);
+server.listen(port);
 
 wss.on("connection", function(ws) {
   var userKey = getParameterByName('user',ws.upgradeReq.url);
